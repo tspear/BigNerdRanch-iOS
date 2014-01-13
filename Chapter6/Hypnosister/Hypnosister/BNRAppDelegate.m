@@ -14,11 +14,30 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
     // Override point for customization after application launch.
-
     
-    HypnosisView *view = [[HypnosisView alloc] initWithFrame:[[self window] bounds]];
-    [[self window] addSubview:view];
+    CGRect screenRect = [[self window] bounds];
+    
+    //Create the UIScrollview to have the size of the window, matching its size
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    
+    [scrollView setMinimumZoomScale:1.0];
+    [scrollView setMaximumZoomScale:5.0];
+    
+    [scrollView setDelegate:self];
+    [[self window] addSubview:scrollView];
+
+    // create the hypnosisview with a frame that is twice the size of the screen
+    CGRect bigRect = screenRect;
+    view = [[HypnosisView alloc] initWithFrame:screenRect];
+
+    // add the hypnosisview as a subview of the scrollview instead of the window
+    [scrollView addSubview:view];
+    
+    // Tell the scrollView how big it's virtual world is
+    [scrollView setContentSize:bigRect.size];
     
     BOOL success = [view becomeFirstResponder];
     if (success) {
@@ -58,6 +77,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return view;
 }
 
 @end

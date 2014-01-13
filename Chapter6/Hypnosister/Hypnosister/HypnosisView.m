@@ -48,6 +48,8 @@
         CGContextStrokePath(ctx);
     }
     
+    
+    // ADD TEXT OVERLAY
     // create a string
     NSString *text = @"You are getting sleepy.";
     
