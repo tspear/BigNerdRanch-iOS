@@ -17,6 +17,7 @@
 		0A441C3E18845B2A00581890 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A441C3D18845B2A00581890 /* Default@2x.png */; };
 		0A441C4018845B2A00581890 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A441C3F18845B2A00581890 /* Default-568h@2x.png */; };
 		0A441C4818845CEE00581890 /* HypnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A441C4718845CEE00581890 /* HypnosisViewController.m */; };
+		0A441C4B188489B300581890 /* HypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A441C4A188489B300581890 /* HypnosisView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		0A441C3F18845B2A00581890 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0A441C4618845CEE00581890 /* HypnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisViewController.h; sourceTree = "<group>"; };
 		0A441C4718845CEE00581890 /* HypnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisViewController.m; sourceTree = "<group>"; };
+		0A441C49188489B300581890 /* HypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisView.h; sourceTree = "<group>"; };
+		0A441C4A188489B300581890 /* HypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				0A441C3918845B2A00581890 /* HypnoAppDelegate.m */,
 				0A441C4618845CEE00581890 /* HypnosisViewController.h */,
 				0A441C4718845CEE00581890 /* HypnosisViewController.m */,
+				0A441C49188489B300581890 /* HypnosisView.h */,
+				0A441C4A188489B300581890 /* HypnosisView.m */,
 				0A441C3018845B2900581890 /* Supporting Files */,
 			);
 			path = HypnoTime;
@@ -173,6 +178,7 @@
 				0A441C3618845B2A00581890 /* main.m in Sources */,
 				0A441C3A18845B2A00581890 /* HypnoAppDelegate.m in Sources */,
 				0A441C4818845CEE00581890 /* HypnosisViewController.m in Sources */,
+				0A441C4B188489B300581890 /* HypnosisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

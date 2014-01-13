@@ -7,32 +7,20 @@
 //
 
 #import "HypnosisViewController.h"
-
-@interface HypnosisViewController ()
-
-@end
+#import "HypnosisView.h"
 
 @implementation HypnosisViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (void)loadView
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    // Create  view
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    HypnosisView *v = [[HypnosisView alloc] initWithFrame:frame];
+    
+    // Set as main view
+    [self setView:v];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
