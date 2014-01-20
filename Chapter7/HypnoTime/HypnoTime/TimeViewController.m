@@ -53,6 +53,20 @@
     
     NSLog(@"TimeViewController loaded its view");
     
+    [[self view] setBackgroundColor:[UIColor greenColor]];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"currentTimeViewController will appear");
+    [super viewWillAppear:animated];
+    [self showCurrentTime:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"currentTimeViewController will DISappear");
+    [super viewWillDisappear:animated];
 }
 
 
