@@ -17,6 +17,7 @@
 		0A153E151892D19A00C4E1C2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A153E141892D19A00C4E1C2 /* Default@2x.png */; };
 		0A153E171892D19A00C4E1C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A153E161892D19A00C4E1C2 /* Default-568h@2x.png */; };
 		0A153E1F1892D26A00C4E1C2 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A153E1E1892D26A00C4E1C2 /* ItemsViewController.m */; };
+		0A97A80D189BC89A00F46D5E /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A153E211892D93000C4E1C2 /* BNRItem.m */; };
 		222D0DE8189914930078BF7D /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 222D0DE7189914930078BF7D /* BNRItemStore.m */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A97A80D189BC89A00F46D5E /* BNRItem.m in Sources */,
 				0A153E0D1892D19A00C4E1C2 /* main.m in Sources */,
 				0A153E111892D19A00C4E1C2 /* HomepwnerAppDelegate.m in Sources */,
 				0A153E1F1892D26A00C4E1C2 /* ItemsViewController.m in Sources */,
