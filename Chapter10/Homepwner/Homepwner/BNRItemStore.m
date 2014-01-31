@@ -47,5 +47,27 @@
     return p;
 }
 
+- (void)removeItem:(BNRItem *)p;
+{
+    [allItems removeObjectIdenticalTo:p];
+}
+
+- (void)moveItemAtIndex:(int)from
+                toIndex:(int)to;
+{
+    if (from == to){
+        return;
+    }
+    // get the pointer to the object being moved so we can reinsert it
+    BNRItem *p = [allItems objectAtIndex:from];
+    
+    // remove p from array
+    [allItems removeObjectAtIndex:from];
+    
+    // insert p at new location
+    [allItems insertObject:p atIndex:to];
+    
+}
+
 
 @end
