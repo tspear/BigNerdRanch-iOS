@@ -150,6 +150,15 @@
     return [[self headerView] bounds].size.height;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    
+    // push to the top of the navcontrollers stack
+    [[self navigationController] pushViewController:detailViewController
+                                           animated:YES];
+}
+
 //
 
 
