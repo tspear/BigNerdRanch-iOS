@@ -17,6 +17,19 @@
     // Call superclass designated initialiser
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        UINavigationItem *n = [self navigationItem];
+        [n setTitle:@"Homepwner"];
+        
+        // Create a new bar button item that will send
+        // addNewItem: to ItemsViewController
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                             target:self
+                                                                             action:@selector(addNewItem:)];
+        
+        // Set this bar button item as the right item in the navigationItem
+        [[self navigationItem] setRightBarButtonItem:bbi];
+        
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
     return self;
 }
@@ -26,24 +39,10 @@
     return [self init];
 }
 
-
-
-
-
-- (IBAction)toggleEditingMode:(id)sender;
+- (void)viewWillAppear:(BOOL)animated
 {
-    // if we are currently in editing mode
-    if ([self isEditing]) {
-        // Change text of button to inform user of state
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-        // Turn off editing mode
-        [self setEditing:NO animated:YES];
-    } else {
-        // Change text of button to inform user of state
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-        // Enter editing mode
-        [self setEditing:YES animated:YES];
-    }
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
 }
 
 
@@ -59,6 +58,10 @@
     
     // Insert this new row into the table
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationTop];
+}
+
+- (void)setItem:(BNRItem *)item{
+    [[self navigationItem] setTitle:[item itemName]];
 }
 
 
@@ -125,34 +128,16 @@
 
 #pragma mark - UITableViewDelegate
 
-- (UIView *)tableView:(UITableView *)tv viewForHeaderInSection:(NSInteger)sec
-{
-    return [self headerView];
-}
-
-
-- (UIView *)headerView
-{
-    // If we havent loaded the headerView yet
-    if(!headerView) {
-        // Load headerView.xib
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
-    }
-    
-    return headerView;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tv heightForHeaderInSection:(NSInteger)sec
-{
-    // The height of the header view should be determined from the height of the
-    // view in the XIB file
-    return [[self headerView] bounds].size.height;
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
+    
+    // give detail view controller a pointer to the item object in row
+    [detailViewController setItem:selectedItem];
     
     // push to the top of the navcontrollers stack
     [[self navigationController] pushViewController:detailViewController
