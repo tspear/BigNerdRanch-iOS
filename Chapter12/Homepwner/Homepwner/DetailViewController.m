@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "BNRItem.h"
+#import "BNRImageStore.h"
 
 @implementation DetailViewController
 
@@ -41,6 +42,18 @@
     // Use filtered NSDate object to set dateLabel contents
     [dateLabel setText:[dateFormatter stringFromDate:[item dateCreated]]];
     
+    NSString *imageKey = [item imageKey];
+    
+    if (imageKey) {
+        // Get image for image key from image store
+        UIImage *imageToDisplay = [[BNRImageStore sharedStore] imageForKey:imageKey];
+        
+        // Use that image to put on screen in imageview
+        [imageView setImage:imageToDisplay];
+    } else {
+        // Clear the imageView
+        [imageView setImage:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -77,8 +90,33 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
+    NSString *oldKey = [item imageKey];
+    
+    // DId the item already have an image?
+    if (oldKey) {
+        // Delete the old image
+        [[BNRImageStore sharedStore] deleteImageForKey:oldKey];
+    }
+    
     // Get picked image from info dictionary
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // Create a CFUUID object - it knows how to create uique idetifier strings
+    CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // Create a string from unique identifier
+    CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+    
+    // Use that unique ID to set our item's imageKey
+    NSString *key = (__bridge NSString *)newUniqueIDString;
+    [item  setImageKey:key];
+    
+    // Store image in the BNRImageStore with this key
+    [[BNRImageStore sharedStore] setImage:image forKey:[item imageKey]];
+    
+    CFRelease(newUniqueIDString);
+    CFRelease(newUniqueID);
     
     // put that image onto the screen in our image view
     [imageView setImage:image];
@@ -88,5 +126,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)backgroundTapped:(id)sender {
+    [[self view] endEditing:YES];
+}
 
 @end

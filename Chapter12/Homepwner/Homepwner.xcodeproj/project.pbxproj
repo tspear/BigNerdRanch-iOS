@@ -21,6 +21,7 @@
 		221F3C6718A18F1A0004B69B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221F3C6518A18F1A0004B69B /* DetailViewController.m */; };
 		221F3C6818A18F1A0004B69B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221F3C6618A18F1A0004B69B /* DetailViewController.xib */; };
 		222D0DE8189914930078BF7D /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 222D0DE7189914930078BF7D /* BNRItemStore.m */; };
+		222E079418B563F7005392E8 /* BNRImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 222E079318B563F7005392E8 /* BNRImageStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		221F3C6618A18F1A0004B69B /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		222D0DE6189914930078BF7D /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
 		222D0DE7189914930078BF7D /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
+		222E079218B563F7005392E8 /* BNRImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageStore.h; sourceTree = "<group>"; };
+		222E079318B563F7005392E8 /* BNRImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				222D0DE7189914930078BF7D /* BNRItemStore.m */,
 				0A153E201892D93000C4E1C2 /* BNRItem.h */,
 				0A153E211892D93000C4E1C2 /* BNRItem.m */,
+				222E079218B563F7005392E8 /* BNRImageStore.h */,
+				222E079318B563F7005392E8 /* BNRImageStore.m */,
 				0A153E071892D19A00C4E1C2 /* Supporting Files */,
 			);
 			path = Homepwner;
@@ -195,6 +200,7 @@
 				0A153E1F1892D26A00C4E1C2 /* ItemsViewController.m in Sources */,
 				222D0DE8189914930078BF7D /* BNRItemStore.m in Sources */,
 				221F3C6718A18F1A0004B69B /* DetailViewController.m in Sources */,
+				222E079418B563F7005392E8 /* BNRImageStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
