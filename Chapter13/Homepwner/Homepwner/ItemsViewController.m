@@ -57,6 +57,8 @@
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
     
+    [navController setModalPresentationStyle:UIModalPresentationFormSheet];
+    
     [self presentViewController:navController animated:YES completion:nil];
 }
 
