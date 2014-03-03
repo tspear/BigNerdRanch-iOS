@@ -214,15 +214,17 @@
 
 - (void)save:(id)sender
 {
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [[self presentingViewController] dismissViewControllerAnimated:YES
+                                                        completion:nil];
 }
 
 - (void)cancel:(id)sender
 {
-    // If users cancels, remove BNRItem from store
+    // If user cancels, remove BNRItem from store
     [[BNRItemStore sharedStore] removeItem:item];
     
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [[self presentingViewController] dismissViewControllerAnimated:YES
+                                                        completion:nil];
     
 }
 @end
