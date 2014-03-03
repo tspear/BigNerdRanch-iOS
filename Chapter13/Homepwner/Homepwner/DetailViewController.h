@@ -22,8 +22,10 @@
     
     UIPopoverController *imagePickerPopover;
 }
+
 @property (nonatomic, strong) BNRItem *item;
 
+- (id)initForNewItem:(BOOL)isnew;
 - (IBAction)takePicture:(id)sender;
 
 @end

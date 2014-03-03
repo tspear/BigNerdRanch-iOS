@@ -9,10 +9,44 @@
 #import "DetailViewController.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
+#import "BNRItemStore.h"
 
 @implementation DetailViewController
 
 @synthesize item;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    @throw [NSException exceptionWithName:@"Wrong initializer"
+                                   reason:@"Use initForNewItem"
+                                 userInfo:nil];
+    return nil;
+}
+
+- (id)initForNewItem:(BOOL)isnew
+{
+    self = [super initWithNibName:@"DetailViewController" bundle:nil];
+    
+    if (self) {
+        if (isnew) {
+            // Done Button
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
+                 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                      target:self
+                                      action:@selector(save:)];
+            [[self navigationItem] setRightBarButtonItem:doneItem];
+
+            // Cancel Button
+            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
+                     initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                         target:self
+                                         action:@selector(cancel:)];
+            [[self navigationItem] setLeftBarButtonItem:cancelItem];
+        }
+    }
+    
+    return self;
+}
 
 - (void)setItem:(BNRItem *)i
 {
@@ -174,8 +208,21 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    NSLog(@"Usee dismissed popover");
+    NSLog(@"User dismissed popover");
     imagePickerPopover = nil;
 }
 
+- (void)save:(id)sender
+{
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cancel:(id)sender
+{
+    // If users cancels, remove BNRItem from store
+    [[BNRItemStore sharedStore] removeItem:item];
+    
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    
+}
 @end
