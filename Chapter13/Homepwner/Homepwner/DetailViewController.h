@@ -24,6 +24,7 @@
 }
 
 @property (nonatomic, strong) BNRItem *item;
+@property (nonatomic, copy) void (^dismissblock)(void);
 
 - (id)initForNewItem:(BOOL)isnew;
 - (IBAction)takePicture:(id)sender;
