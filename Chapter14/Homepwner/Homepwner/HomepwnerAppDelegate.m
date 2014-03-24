@@ -2,7 +2,7 @@
 //  HomepwnerAppDelegate.m
 //  Homepwner
 //
-//  Created by TV Room on 24/01/2014.
+//  Created by Tim Spear on 24/01/2014.
 //  Copyright (c) 2014 Big Nerd Ranch. All rights reserved.
 //
 
