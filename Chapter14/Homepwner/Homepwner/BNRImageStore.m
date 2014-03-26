@@ -30,6 +30,13 @@
     self = [super init];
     if (self) {
         dictionary = [[NSMutableDictionary alloc] init];
+        
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self
+               selector:@selector(clearCache:)
+                   name:UIApplicationDidReceiveMemoryWarningNotification
+                 object:nil];
+        
     }
     
     return self;
@@ -48,10 +55,24 @@
     // Write it to full path
     [d writeToFile:imagePath atomically:YES];
 }
-∑
+
 - (UIImage *)imageForKey:(NSString *)s
 {
-    return [dictionary objectForKey:s];
+    // if possible, get it from the dictionary
+    UIImage *result = [dictionary objectForKey:s];
+    
+    if (!result) {
+        // Create UIImage object from file
+        result = [UIImage imageWithContentsOfFile:[self imagePathForKey:s]];
+        
+        // If we found an image on the filesystem, place it into the cache
+        if (result)
+            [dictionary setObject:result forKey:s];
+        else
+            NSLog(@"Error: unable to find %@", [self imagePathForKey:s]);
+        
+    }
+    return result;
 }
 
 - (void)deleteImageForKey:(NSString *)s
@@ -59,6 +80,10 @@
     if(!s)
         return;
     [dictionary removeObjectForKey:s];
+    
+    NSString *path = [self imagePathForKey:s];
+    [[NSFileManager defaultManager] removeItemAtPath:path
+                                               error:NULL];
 }
 
 - (NSString *)imagePathForKey:(NSString *)key
@@ -71,6 +96,12 @@
     NSString *documentDirectory = [documentDirectories objectAtIndex:0];
     
     return [documentDirectory stringByAppendingPathComponent:key];
+}
+
+- (void)clearCache:(NSNotification *)note
+{
+    NSLog(@"flushing %d images out of the cache", [dictionary count]);
+    [dictionary removeAllObjects];
 }
 
 @end
