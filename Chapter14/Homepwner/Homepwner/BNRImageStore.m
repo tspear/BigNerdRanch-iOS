@@ -70,7 +70,6 @@
             [dictionary setObject:result forKey:s];
         else
             NSLog(@"Error: unable to find %@", [self imagePathForKey:s]);
-        
     }
     return result;
 }

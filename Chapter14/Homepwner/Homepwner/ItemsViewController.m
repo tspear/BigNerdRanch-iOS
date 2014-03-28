@@ -28,7 +28,7 @@
         
         // Set this bar button item as the right item in the navigationItem
         [[self navigationItem] setRightBarButtonItem:bbi];
-        
+
         [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
     return self;
@@ -136,8 +136,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Make a new detailviewcontroller
     DetailViewController *detailViewController = [[DetailViewController alloc] initForNewItem:NO];
     
+    // get item pointer
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
     
