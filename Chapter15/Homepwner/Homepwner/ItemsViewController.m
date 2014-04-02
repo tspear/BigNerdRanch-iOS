@@ -45,6 +45,17 @@
     [[self tableView] reloadData];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // load the NIB file
+    UINib *nib = [UINib nibWithNibName:@"HomepwnerItemCell" bundle:nil];
+    
+    // Register this Nib which contains the cell
+    [[self tableView] registerNib:nib
+           forCellReuseIdentifier:@"HomepwnerItemCell"];
+}
 
 - (IBAction)addNewItem:(id)sender;
 {
@@ -74,24 +85,21 @@
 #pragma mark - UITableViewDataSource
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //check for a reusable cell first, use that if it exists
-    UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    
-    // if there is no reusable cell of this type create a new one.
-    if (!cell){
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:@"UITableViewCell"];
-    }
-    // Set the text on the cell with the description of the item
-    // that is at the nth index of itmes, where n = row this cell
-    // will appear in on the tableview
+
     BNRItem *p = [[[BNRItemStore sharedStore] allItems]
                   objectAtIndex:[indexPath row]];
-    [[cell textLabel] setText:[p description]];
+    
+    HomepwnerItemCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:@"HomepwnerItemCell"];
+    
+    [[cell nameLabel] setText:[p itemName]];
+    [[cell serialNumberLabel] setText:[p serialNumber]];
+    [[cell valueLabel] setText:[NSString stringWithFormat:@"$%d", [p valueInDollars]]];
+    
+    [[cell thumbnailView] setImage:[p thumbnail]];
     
     return cell;
 }

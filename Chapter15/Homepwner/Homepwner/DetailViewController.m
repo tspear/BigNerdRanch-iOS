@@ -159,7 +159,7 @@
     
     NSString *oldKey = [item imageKey];
     
-    // DId the item already have an image?
+    // Did the item already have an image?
     if (oldKey) {
         // Delete the old image
         [[BNRImageStore sharedStore] deleteImageForKey:oldKey];
@@ -168,7 +168,9 @@
     // Get picked image from info dictionary
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    // Create a CFUUID object - it knows how to create uique idetifier strings
+    [item setThumbnailDataFromImage:image];
+    
+    // Create a CFUUID object - it knows how to create unique identifier strings
     CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
     
     // Create a string from unique identifier
