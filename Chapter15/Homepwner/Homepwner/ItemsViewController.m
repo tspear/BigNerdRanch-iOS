@@ -9,7 +9,8 @@
 #import "ItemsViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
-
+#import "BNRImageStore.h"
+#import "ImageViewController.h"
 @implementation ItemsViewController
 
 - (id)init
@@ -80,7 +81,10 @@
     [[self navigationItem] setTitle:[item itemName]];
 }
 
-
+- (void)showImage:(id)sender atIndexPath:(NSIndexPath *)ip
+{
+    NSLog(@"Going to show the image for %@", ip);
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -94,7 +98,9 @@
     
     HomepwnerItemCell *cell =
     [tableView dequeueReusableCellWithIdentifier:@"HomepwnerItemCell"];
-    
+
+    [cell setController:self];
+    [cell setTableView:tableView];
     [[cell nameLabel] setText:[p itemName]];
     [[cell serialNumberLabel] setText:[p serialNumber]];
     [[cell valueLabel] setText:[NSString stringWithFormat:@"$%d", [p valueInDollars]]];
