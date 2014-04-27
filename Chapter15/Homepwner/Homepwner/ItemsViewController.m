@@ -84,6 +84,8 @@
 - (void)showImage:(id)sender atIndexPath:(NSIndexPath *)ip
 {
     NSLog(@"Going to show the image for %@", ip);
+    
+    
 }
 
 #pragma mark - UITableViewDataSource
