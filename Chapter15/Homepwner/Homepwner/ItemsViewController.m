@@ -85,7 +85,41 @@
 {
     NSLog(@"Going to show the image for %@", ip);
     
-    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        // Get the item for the indexpath
+        BNRItem *i = [[[BNRItemStore sharedStore] allItems] objectAtIndex:[ip row]];
+        
+        NSString *imagekey = [i imageKey];
+        
+        // if there is no image we dont need to display anything
+        UIImage *img = [[BNRImageStore sharedStore] imageForKey:imagekey];
+        if (!img)
+            return;
+        
+        // Make a rectangle that the frame of the button relative to
+        // our table view
+        CGRect rect = [[self view] convertRect:[sender bounds] fromView:sender];
+        
+        // Create a new ImageViewcontroller and set its image
+        ImageViewController *ivc = [[ImageViewController alloc] init];
+        [ivc setImage:img];
+        
+        // Present a 600x600 popover from the rect
+        imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
+        [imagePopover setDelegate:self];
+        [imagePopover setPopoverContentSize:CGSizeMake(600, 600)];
+        [imagePopover presentPopoverFromRect:rect
+                                      inView:[self view]
+                    permittedArrowDirections:UIPopoverArrowDirectionAny
+                                    animated:YES];
+    }
+}
+
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    [imagePopover dismissPopoverAnimated:YES];
+    imagePopover = nil;
 }
 
 #pragma mark - UITableViewDataSource
